@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Destruir : MonoBehaviour
 {
-    public void OnCollisionEnter(Collision collision){
-        if(collision.collider.name == "Destruir"){
-            Destroy(this.gameObject);
+    public void OnTriggerEnter(Collider collider){
+        if(collider.gameObject.name == "Pelota"){
+            Destroy(collider.gameObject);
         }
     }
 }
