@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destruir : MonoBehaviour
+public class Meta : MonoBehaviour
 {
-    public ControlJuego control;
-    public ControlNivel controlN;
+    public ControlNivel control;
 
     public void OnTriggerEnter(Collider collider){
         if(collider.gameObject.name == "Pelota"){
+            control.incrementaNivelActual();
+            control.visualizaNivel();
             Destroy(collider.gameObject);
-            control.incrementaIntentos();
-            controlN.decrementaNivelActual();
-            controlN.visualizaNivel();
         }
     }
 }

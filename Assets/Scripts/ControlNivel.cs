@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class ControlNivel : MonoBehaviour
 {
-
-    private Vector3[] posiciones = {new Vector3(0.024f,0.138f,0.961f), new Vector3(1f,1f,1f)};
-    private int nivelActual = 0;
+    private int nivelActual = 1;
+    public GameObject Nivel1;
+    public GameObject Nivel2;
+    public GameObject Nivel3;
 
     public void decrementaNivelActual(){
-        if(nivelActual > 0 ){
+        if(nivelActual > 1 ){
             nivelActual--;
-            transform.position = posiciones[nivelActual];
         }
     }
 
     public void incrementaNivelActual(){
-        if(nivelActual < 3){
+        if(nivelActual < 4){
             nivelActual++;
         }
     }
@@ -25,21 +25,27 @@ public class ControlNivel : MonoBehaviour
         return nivelActual;
     }
 
-    public void OnTriggerEnter(Collider collider){
-        if(collider.gameObject.name == "Pelota"){
-            incrementaNivelActual();
-            Destroy(collider.gameObject);
-            transform.position = posiciones[nivelActual];
+    public void visualizaNivel(){
+        if(nivelActual == 1){
+            Nivel1.SetActive(true);
+            Nivel2.SetActive(false);
+            Nivel3.SetActive(false);
+
+        }else if(nivelActual == 2){
+            Nivel1.SetActive(false);
+            Nivel2.SetActive(true);
+            Nivel3.SetActive(false);
+
+        }else{
+
+            Nivel1.SetActive(false);
+            Nivel2.SetActive(false);
+            Nivel3.SetActive(true);
         }
     }
 
     void Start(){
-        transform.position = posiciones[0];
+        visualizaNivel();
     }
-
-    void Update(){
-        Debug.Log("Estamos en el nivel"+nivelActual);  
-    }
-
 }
 
